@@ -19,44 +19,59 @@ int[] RandArray (int sizeArr, int left, int right)
         return array;
         }
 
-// Создаем метод разности значений между максимальным и мнимальным значением
+// Создаем методы определения максимального и минимального значений массива
+// Сильно туплю и не понимаю как их объединить в один метод, не используя сортировку )))
 
-int DifferenceMaxAndMin (int[] arr) 
-
+int MaxNumber(int[] arr) 
            
-        {
-            
-            int diff = 0;
+        {            
+           
             int max = 0;
-            
-
-            for (int i = 1; i < arr.Length; i ++)
-            {
-                max = arr[0];
-                    {                     
-                      if (arr[i + 1] > arr[i]) {   //3 2 1 10 0 5 7 11
-                        max = arr[i + 1]; 
-                                      
+           
         
-                     }
-                      
-                        else {
-                                int temp = arr[i + 1];
-                                arr[i + 1] = arr[i];
-                                arr[i] = temp;
-
-                        }
-
-                    }
+            for (int i = 1; i < arr.Length; i ++)
+            {               
+                                       
+                      if (arr[i] > arr[max]) {                          
+                    
+                        max = i;                                       
+        
+                     }                     
+                
             }
 
-        return max;
+        return arr[max];
+        }
+
+        int MinNumber(int[] arr) 
+
+           
+        {           
+           
+            int min = 0;          
+        
+            for (int i = 1; i < arr.Length; i ++)
+            {               
+                                       
+                      if (arr[i] < arr[min]) {                          
+                    
+                        min = i;                                       
+        
+                     }                     
+                
+            }
+
+        return arr[min];
         }
         
-int[] massive = RandArray(10, 0, 43);
+int[] massive = RandArray(10, 0, 100);
 Console.WriteLine(string.Join(", ", massive));
 
-int mas = DifferenceMaxAndMin(massive);
+int maxs = MaxNumber(massive);
+int mins = MinNumber(massive);
+int diff = maxs - mins;
 
-Console.WriteLine($" Максимальное число {mas}");
+Console.WriteLine($" Максимальное число {maxs}");
+Console.WriteLine($" Минимальное число {mins}");
+Console.WriteLine($" Разница максимального и минимального чисел составляет:  {diff}");
 
